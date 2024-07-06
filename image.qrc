@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>resources/images/stove_icon1.png</file>
+        <file>resources/images/avvbu-fiqxm-001.ico</file>
+    </qresource>
+</RCC>
