@@ -908,6 +908,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="decimals">
+         <number>1</number>
+        </property>
         <property name="maximum">
          <double>2000.000000000000000</double>
         </property>
@@ -939,6 +942,9 @@
        <widget class="QDoubleSpinBox" name="doubleSpinBox_2">
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="decimals">
+         <number>1</number>
         </property>
         <property name="maximum">
          <double>2000.000000000000000</double>
@@ -972,6 +978,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="decimals">
+         <number>1</number>
+        </property>
         <property name="maximum">
          <double>2000.000000000000000</double>
         </property>
@@ -1003,6 +1012,9 @@
        <widget class="QDoubleSpinBox" name="doubleSpinBox_4">
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="decimals">
+         <number>1</number>
         </property>
         <property name="maximum">
          <double>2000.000000000000000</double>
@@ -1036,6 +1048,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="decimals">
+         <number>1</number>
+        </property>
         <property name="maximum">
          <double>2000.000000000000000</double>
         </property>
@@ -1067,6 +1082,9 @@
        <widget class="QDoubleSpinBox" name="doubleSpinBox_6">
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="decimals">
+         <number>1</number>
         </property>
         <property name="maximum">
          <double>2000.000000000000000</double>
@@ -1100,6 +1118,9 @@
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
+        <property name="decimals">
+         <number>1</number>
+        </property>
         <property name="maximum">
          <double>2000.000000000000000</double>
         </property>
@@ -1131,6 +1152,9 @@
        <widget class="QDoubleSpinBox" name="doubleSpinBox_8">
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="decimals">
+         <number>1</number>
         </property>
         <property name="maximum">
          <double>2000.000000000000000</double>

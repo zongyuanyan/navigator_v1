@@ -24,5 +24,8 @@ public:
 private:
     Ui::Stove_Navigator *ui;
 
+private slots:
+    void ui_slot_switch_image();
+
 };
 #endif // STOVE_NAVIGATOR_H

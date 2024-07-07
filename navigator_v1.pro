@@ -15,6 +15,7 @@ SOURCES += \
     stove_navigator.cpp
 
 HEADERS += \
+    params.h \
     stove_navigator.h
 
 FORMS += \
