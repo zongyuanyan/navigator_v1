@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1920</width>
-    <height>1080</height>
+    <width>1280</width>
+    <height>720</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -20,87 +20,30 @@
    <string>Stove_Navigator</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="pushButton">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>30</y>
-      <width>150</width>
-      <height>50</height>
-     </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-      <horstretch>2</horstretch>
-      <verstretch>2</verstretch>
-     </sizepolicy>
-    </property>
-    <property name="autoFillBackground">
-     <bool>false</bool>
-    </property>
-    <property name="text">
-     <string>导航状态初始化</string>
-    </property>
-    <property name="autoDefault">
-     <bool>false</bool>
-    </property>
-    <property name="flat">
-     <bool>false</bool>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_2">
-    <property name="geometry">
-     <rect>
-      <x>230</x>
-      <y>30</y>
-      <width>150</width>
-      <height>50</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>燃料类型选择</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_3">
-    <property name="geometry">
-     <rect>
-      <x>430</x>
-      <y>30</y>
-      <width>150</width>
-      <height>50</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>导航目标设定</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_4">
-    <property name="geometry">
-     <rect>
-      <x>630</x>
-      <y>30</y>
-      <width>150</width>
-      <height>50</height>
-     </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
-    <property name="text">
-     <string>历史数据分析</string>
-    </property>
-   </widget>
    <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>520</y>
-      <width>291</width>
+      <x>10</x>
+      <y>420</y>
+      <width>461</width>
       <height>201</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">        QGroupBox {
+            border-color: rgb(156, 156, 156);
+            border-width: 2px;
+            border-style: solid;
+            margin-top: 0.5ex;
+        }
+        QGroupBox::title {
+            subcontrol-origin: margin;
+            subcontrol-position: top left;
+            left: 10px;
+            margin-left: 2px;
+            padding: 0  0px;
+			 color: rgb(0, 0, 0);
+        }</string>
     </property>
     <property name="title">
      <string>燃料状态评估</string>
@@ -110,7 +53,7 @@
       <rect>
        <x>10</x>
        <y>30</y>
-       <width>61</width>
+       <width>97</width>
        <height>161</height>
       </rect>
      </property>
@@ -153,25 +96,12 @@
      </layout>
     </widget>
    </widget>
-   <widget class="QGroupBox" name="groupBox_2">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>90</y>
-      <width>291</width>
-      <height>391</height>
-     </rect>
-    </property>
-    <property name="title">
-     <string>燃料状态与测点可视化</string>
-    </property>
-   </widget>
    <widget class="QGroupBox" name="groupBox_3">
     <property name="geometry">
      <rect>
-      <x>380</x>
-      <y>520</y>
-      <width>451</width>
+      <x>480</x>
+      <y>420</y>
+      <width>541</width>
       <height>201</height>
      </rect>
     </property>
@@ -180,6 +110,22 @@
       <horstretch>3</horstretch>
       <verstretch>0</verstretch>
      </sizepolicy>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">        QGroupBox {
+            border-color: rgb(156, 156, 156);
+            border-width: 2px;
+            border-style: solid;
+            margin-top: 0.5ex;
+        }
+        QGroupBox::title {
+            subcontrol-origin: margin;
+            subcontrol-position: top left;
+            left: 10px;
+            margin-left: 2px;
+            padding: 0  0px;
+			 color: rgb(0, 0, 0);
+        }</string>
     </property>
     <property name="title">
      <string>动作调整指令</string>
@@ -235,45 +181,38 @@
    <widget class="QGroupBox" name="groupBox_4">
     <property name="geometry">
      <rect>
-      <x>890</x>
-      <y>120</y>
-      <width>171</width>
-      <height>281</height>
+      <x>1040</x>
+      <y>20</y>
+      <width>211</width>
+      <height>321</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">        QGroupBox {
+            border-color: rgb(156, 156, 156);
+            border-width: 2px;
+            border-style: solid;
+            margin-top: 0.5ex;
+        }
+        QGroupBox::title {
+            subcontrol-origin: margin;
+            subcontrol-position: top left;
+            left: 10px;
+            margin-left: 2px;
+            padding: 0  0px;
+			 color: rgb(0, 0, 0);
+        }</string>
     </property>
     <property name="title">
      <string>默认类型</string>
     </property>
-    <widget class="QLabel" name="label_12">
-     <property name="geometry">
-      <rect>
-       <x>30</x>
-       <y>240</y>
-       <width>71</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>燃料水分校正</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="lineEdit">
-     <property name="geometry">
-      <rect>
-       <x>110</x>
-       <y>240</y>
-       <width>31</width>
-       <height>22</height>
-      </rect>
-     </property>
-    </widget>
     <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>40</x>
-       <y>30</y>
-       <width>82</width>
-       <height>191</height>
+       <y>20</y>
+       <width>121</width>
+       <height>241</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -321,13 +260,35 @@
       </item>
      </layout>
     </widget>
+    <widget class="QWidget" name="">
+     <property name="geometry">
+      <rect>
+       <x>31</x>
+       <y>270</y>
+       <width>141</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_17">
+      <item>
+       <widget class="QLabel" name="label_12">
+        <property name="text">
+         <string>燃料水分校正</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QDoubleSpinBox" name="doubleSpinBox_17"/>
+      </item>
+     </layout>
+    </widget>
    </widget>
    <widget class="QLabel" name="label_11">
     <property name="geometry">
      <rect>
-      <x>930</x>
-      <y>80</y>
-      <width>71</width>
+      <x>1100</x>
+      <y>0</y>
+      <width>81</width>
       <height>20</height>
      </rect>
     </property>
@@ -338,119 +299,182 @@
    <widget class="QGroupBox" name="groupBox_5">
     <property name="geometry">
      <rect>
-      <x>890</x>
-      <y>450</y>
-      <width>171</width>
+      <x>1040</x>
+      <y>350</y>
+      <width>211</width>
       <height>271</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">        QGroupBox {
+            border-color: rgb(156, 156, 156);
+            border-width: 2px;
+            border-style: solid;
+            margin-top: 0.5ex;
+        }
+        QGroupBox::title {
+            subcontrol-origin: margin;
+            subcontrol-position: top left;
+            left: 10px;
+            margin-left: 2px;
+            padding: 0  0px;
+			 color: rgb(0, 0, 0);
+        }</string>
     </property>
     <property name="title">
      <string>燃料参数</string>
     </property>
-    <widget class="QLabel" name="label_13">
+    <widget class="QWidget" name="">
      <property name="geometry">
       <rect>
-       <x>10</x>
+       <x>20</x>
        <y>30</y>
-       <width>49</width>
-       <height>14</height>
+       <width>170</width>
+       <height>24</height>
       </rect>
      </property>
-     <property name="text">
-      <string>当前选项：</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="lineEdit_2">
-     <property name="geometry">
-      <rect>
-       <x>80</x>
-       <y>30</y>
-       <width>41</width>
-       <height>22</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QWidget" name="layoutWidget">
-     <property name="geometry">
-      <rect>
-       <x>110</x>
-       <y>60</y>
-       <width>51</width>
-       <height>181</height>
-      </rect>
-     </property>
-     <layout class="QFormLayout" name="formLayout_2">
-      <item row="0" column="0">
-       <widget class="QLineEdit" name="lineEdit_3"/>
+     <layout class="QHBoxLayout" name="horizontalLayout_18">
+      <item>
+       <widget class="QLabel" name="label_13">
+        <property name="text">
+         <string>当前选项：</string>
+        </property>
+       </widget>
       </item>
-      <item row="1" column="0">
-       <widget class="QLineEdit" name="lineEdit_4"/>
-      </item>
-      <item row="2" column="0">
-       <widget class="QLineEdit" name="lineEdit_5"/>
-      </item>
-      <item row="3" column="0">
-       <widget class="QLineEdit" name="lineEdit_6"/>
-      </item>
-      <item row="4" column="0">
-       <widget class="QLineEdit" name="lineEdit_7"/>
-      </item>
-      <item row="5" column="0">
-       <widget class="QLineEdit" name="lineEdit_8"/>
+      <item>
+       <widget class="QLineEdit" name="lineEdit_2"/>
       </item>
      </layout>
     </widget>
-    <widget class="QWidget" name="layoutWidget">
+    <widget class="QWidget" name="">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>60</y>
-       <width>84</width>
-       <height>181</height>
+       <x>12</x>
+       <y>90</y>
+       <width>171</width>
+       <height>23</height>
       </rect>
      </property>
-     <layout class="QFormLayout" name="formLayout">
-      <item row="0" column="0">
+     <layout class="QHBoxLayout" name="horizontalLayout_19">
+      <item>
        <widget class="QLabel" name="label_14">
         <property name="text">
-         <string>水分含量：</string>
+         <string>水分含量(wt.%)</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="0">
+      <item>
+       <widget class="QDoubleSpinBox" name="doubleSpinBox_18"/>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="">
+     <property name="geometry">
+      <rect>
+       <x>12</x>
+       <y>120</y>
+       <width>171</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_20">
+      <item>
        <widget class="QLabel" name="label_15">
         <property name="text">
-         <string>挥发分含量：</string>
+         <string>挥发分含量(wt.%)</string>
         </property>
        </widget>
       </item>
-      <item row="2" column="0">
+      <item>
+       <widget class="QDoubleSpinBox" name="doubleSpinBox_19"/>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="">
+     <property name="geometry">
+      <rect>
+       <x>12</x>
+       <y>150</y>
+       <width>171</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_21">
+      <item>
        <widget class="QLabel" name="label_16">
         <property name="text">
-         <string>固定碳含量：</string>
+         <string>固定碳含量(wt.%)</string>
         </property>
        </widget>
       </item>
-      <item row="3" column="0">
+      <item>
+       <widget class="QDoubleSpinBox" name="doubleSpinBox_20"/>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="">
+     <property name="geometry">
+      <rect>
+       <x>12</x>
+       <y>180</y>
+       <width>171</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_22">
+      <item>
        <widget class="QLabel" name="label_17">
         <property name="text">
-         <string>灰分含量：</string>
+         <string>灰分含量(wt.%)</string>
         </property>
        </widget>
       </item>
-      <item row="4" column="0">
+      <item>
+       <widget class="QDoubleSpinBox" name="doubleSpinBox_21"/>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="">
+     <property name="geometry">
+      <rect>
+       <x>12</x>
+       <y>210</y>
+       <width>171</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_23">
+      <item>
        <widget class="QLabel" name="label_18">
         <property name="text">
-         <string>燃料N含量：</string>
+         <string>燃料N含量(wt.%)</string>
         </property>
        </widget>
       </item>
-      <item row="5" column="0">
+      <item>
+       <widget class="QDoubleSpinBox" name="doubleSpinBox_22"/>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="">
+     <property name="geometry">
+      <rect>
+       <x>12</x>
+       <y>240</y>
+       <width>174</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_24">
+      <item>
        <widget class="QLabel" name="label_19">
         <property name="text">
-         <string>燃烧热值LHV：</string>
+         <string>燃烧热值LHV(MJ/kg）</string>
         </property>
        </widget>
+      </item>
+      <item>
+       <widget class="QDoubleSpinBox" name="doubleSpinBox_23"/>
       </item>
      </layout>
     </widget>
@@ -458,210 +482,42 @@
    <widget class="QGroupBox" name="groupBox_6">
     <property name="geometry">
      <rect>
-      <x>380</x>
-      <y>90</y>
-      <width>451</width>
+      <x>480</x>
+      <y>0</y>
+      <width>541</width>
       <height>241</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">        QGroupBox {
+            border-color: rgb(156, 156, 156);
+            border-width: 2px;
+            border-style: solid;
+            margin-top: 0.5ex;
+        }
+        QGroupBox::title {
+            subcontrol-origin: margin;
+            subcontrol-position: top left;
+            left: 10px;
+            margin-left: 2px;
+            padding: 0  0px;
+			 color: rgb(0, 0, 0);
+        }</string>
     </property>
     <property name="title">
      <string>面板参数可视化</string>
     </property>
-    <widget class="QLabel" name="label_20">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>30</y>
-       <width>81</width>
-       <height>28</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>推料电机频率</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="lineEdit_9">
-     <property name="geometry">
-      <rect>
-       <x>100</x>
-       <y>30</y>
-       <width>31</width>
-       <height>22</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_21">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>70</y>
-       <width>81</width>
-       <height>28</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>当前进速度</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="lineEdit_10">
-     <property name="geometry">
-      <rect>
-       <x>100</x>
-       <y>70</y>
-       <width>31</width>
-       <height>22</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_22">
-     <property name="geometry">
-      <rect>
-       <x>150</x>
-       <y>30</y>
-       <width>81</width>
-       <height>28</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>一次风机频率</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="lineEdit_11">
-     <property name="geometry">
-      <rect>
-       <x>220</x>
-       <y>30</y>
-       <width>31</width>
-       <height>22</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_23">
-     <property name="geometry">
-      <rect>
-       <x>150</x>
-       <y>70</y>
-       <width>81</width>
-       <height>28</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>一次风总量</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="lineEdit_12">
-     <property name="geometry">
-      <rect>
-       <x>220</x>
-       <y>70</y>
-       <width>31</width>
-       <height>22</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_24">
-     <property name="geometry">
-      <rect>
-       <x>270</x>
-       <y>30</y>
-       <width>81</width>
-       <height>28</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>二次风机频率</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="lineEdit_13">
-     <property name="geometry">
-      <rect>
-       <x>350</x>
-       <y>30</y>
-       <width>31</width>
-       <height>22</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_25">
-     <property name="geometry">
-      <rect>
-       <x>270</x>
-       <y>70</y>
-       <width>81</width>
-       <height>28</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>二次风总量</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="lineEdit_14">
-     <property name="geometry">
-      <rect>
-       <x>350</x>
-       <y>70</y>
-       <width>31</width>
-       <height>22</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_26">
-     <property name="geometry">
-      <rect>
-       <x>50</x>
-       <y>110</y>
-       <width>111</width>
-       <height>28</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>一次风过量空气系数</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="lineEdit_15">
-     <property name="geometry">
-      <rect>
-       <x>160</x>
-       <y>110</y>
-       <width>31</width>
-       <height>22</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_27">
-     <property name="geometry">
-      <rect>
-       <x>240</x>
-       <y>110</y>
-       <width>111</width>
-       <height>28</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>二次风过量空气系数</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="lineEdit_16">
-     <property name="geometry">
-      <rect>
-       <x>360</x>
-       <y>110</y>
-       <width>31</width>
-       <height>22</height>
-      </rect>
-     </property>
-    </widget>
     <widget class="QLabel" name="label_28">
      <property name="geometry">
       <rect>
-       <x>40</x>
-       <y>140</y>
-       <width>89</width>
-       <height>14</height>
+       <x>60</x>
+       <y>110</y>
+       <width>101</width>
+       <height>16</height>
       </rect>
      </property>
      <property name="text">
-      <string>一次风机频率(HZ)</string>
+      <string>一次风机频率(KHZ)</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_29">
@@ -674,18 +530,223 @@
       </rect>
      </property>
      <property name="text">
-      <string>二次风机频率(HZ)</string>
+      <string/>
      </property>
+    </widget>
+    <widget class="QLabel" name="label_34">
+     <property name="geometry">
+      <rect>
+       <x>300</x>
+       <y>110</y>
+       <width>101</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>二次风机频率(KHZ)</string>
+     </property>
+    </widget>
+    <widget class="QWidget" name="">
+     <property name="geometry">
+      <rect>
+       <x>11</x>
+       <y>30</y>
+       <width>171</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_9">
+      <item>
+       <widget class="QLabel" name="label_20">
+        <property name="text">
+         <string>推料电机频率(khz)</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QDoubleSpinBox" name="doubleSpinBox_9"/>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="">
+     <property name="geometry">
+      <rect>
+       <x>11</x>
+       <y>56</y>
+       <width>171</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_10">
+      <item>
+       <widget class="QLabel" name="label_22">
+        <property name="text">
+         <string>一次风机频率(khz)</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QDoubleSpinBox" name="doubleSpinBox_10"/>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="">
+     <property name="geometry">
+      <rect>
+       <x>11</x>
+       <y>80</y>
+       <width>171</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_11">
+      <item>
+       <widget class="QLabel" name="label_24">
+        <property name="text">
+         <string>二次风机频率(khz)</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QDoubleSpinBox" name="doubleSpinBox_11"/>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>30</y>
+       <width>121</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_12">
+      <item>
+       <widget class="QLabel" name="label_21">
+        <property name="text">
+         <string>当前进速度</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QDoubleSpinBox" name="doubleSpinBox_12"/>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>56</y>
+       <width>121</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_13">
+      <item>
+       <widget class="QLabel" name="label_23">
+        <property name="text">
+         <string>一次风总量</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QDoubleSpinBox" name="doubleSpinBox_13"/>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>80</y>
+       <width>121</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_14">
+      <item>
+       <widget class="QLabel" name="label_25">
+        <property name="text">
+         <string>二次风总量</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QDoubleSpinBox" name="doubleSpinBox_14"/>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="">
+     <property name="geometry">
+      <rect>
+       <x>320</x>
+       <y>30</y>
+       <width>171</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_15">
+      <item>
+       <widget class="QLabel" name="label_26">
+        <property name="text">
+         <string>一次风过量空气系数</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QDoubleSpinBox" name="doubleSpinBox_15"/>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="">
+     <property name="geometry">
+      <rect>
+       <x>320</x>
+       <y>70</y>
+       <width>171</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_16">
+      <item>
+       <widget class="QLabel" name="label_27">
+        <property name="text">
+         <string>二次风过量空气系数</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QDoubleSpinBox" name="doubleSpinBox_16"/>
+      </item>
+     </layout>
     </widget>
    </widget>
    <widget class="QGroupBox" name="groupBox_7">
     <property name="geometry">
      <rect>
-      <x>380</x>
-      <y>350</y>
-      <width>451</width>
-      <height>151</height>
+      <x>480</x>
+      <y>240</y>
+      <width>541</width>
+      <height>161</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">        QGroupBox {
+            border-color: rgb(156, 156, 156);
+            border-width: 2px;
+            border-style: solid;
+            margin-top: 0.5ex;
+        }
+        QGroupBox::title {
+            subcontrol-origin: margin;
+            subcontrol-position: top left;
+            left: 10px;
+            margin-left: 2px;
+            padding: 0  0px;
+			 color: rgb(0, 0, 0);
+        }</string>
     </property>
     <property name="title">
      <string>推荐设定参数</string>
@@ -694,7 +755,7 @@
      <property name="geometry">
       <rect>
        <x>30</x>
-       <y>120</y>
+       <y>130</y>
        <width>101</width>
        <height>28</height>
       </rect>
@@ -706,8 +767,8 @@
     <widget class="QLabel" name="label_31">
      <property name="geometry">
       <rect>
-       <x>160</x>
-       <y>120</y>
+       <x>210</x>
+       <y>130</y>
        <width>71</width>
        <height>28</height>
       </rect>
@@ -719,9 +780,9 @@
     <widget class="QLabel" name="label_32">
      <property name="geometry">
       <rect>
-       <x>300</x>
-       <y>120</y>
-       <width>91</width>
+       <x>360</x>
+       <y>130</y>
+       <width>101</width>
        <height>28</height>
       </rect>
      </property>
@@ -730,18 +791,513 @@
      </property>
     </widget>
    </widget>
+   <widget class="QGroupBox" name="groupBox_8">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>870</y>
+      <width>120</width>
+      <height>80</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_33">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>860</y>
+      <width>49</width>
+      <height>14</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>0</y>
+      <width>461</width>
+      <height>401</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">        QGroupBox {
+            border-color: rgb(156, 156, 156);
+            border-width: 2px;
+            border-style: solid;
+            margin-top: 0.5ex;
+        }
+        QGroupBox::title {
+            subcontrol-origin: margin;
+            subcontrol-position: top left;
+            left: 10px;
+            margin-left: 2px;
+            padding: 0  0px;
+			 color: rgb(0, 0, 0);
+        }</string>
+    </property>
+    <property name="title">
+     <string>燃烧状态和测点温度设置</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+    </property>
+    <widget class="QLabel" name="label_35">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>250</width>
+       <height>325</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap>resources/images/H_L_H_H.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_36">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>370</y>
+       <width>101</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {
+    font-family: &quot;Microsoft YaHei&quot;;
+    font-size: 12px;
+}</string>
+     </property>
+     <property name="text">
+      <string>锅炉燃烧示意图</string>
+     </property>
+    </widget>
+    <widget class="QWidget" name="">
+     <property name="geometry">
+      <rect>
+       <x>281</x>
+       <y>41</y>
+       <width>161</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QLabel" name="label_37">
+        <property name="text">
+         <string>左侧炉膛温度</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QDoubleSpinBox" name="doubleSpinBox">
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="maximum">
+         <double>2000.000000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>50.000000000000000</double>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="">
+     <property name="geometry">
+      <rect>
+       <x>282</x>
+       <y>81</y>
+       <width>161</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QLabel" name="label_38">
+        <property name="text">
+         <string>右侧炉膛温度</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QDoubleSpinBox" name="doubleSpinBox_2">
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="maximum">
+         <double>2000.000000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>50.000000000000000</double>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="">
+     <property name="geometry">
+      <rect>
+       <x>281</x>
+       <y>120</y>
+       <width>161</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <item>
+       <widget class="QLabel" name="label_39">
+        <property name="text">
+         <string>左侧喉口温度</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QDoubleSpinBox" name="doubleSpinBox_3">
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="maximum">
+         <double>2000.000000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>50.000000000000000</double>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="">
+     <property name="geometry">
+      <rect>
+       <x>281</x>
+       <y>159</y>
+       <width>161</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_4">
+      <item>
+       <widget class="QLabel" name="label_40">
+        <property name="text">
+         <string>右侧喉口温度</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QDoubleSpinBox" name="doubleSpinBox_4">
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="maximum">
+         <double>2000.000000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>50.000000000000000</double>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="">
+     <property name="geometry">
+      <rect>
+       <x>281</x>
+       <y>198</y>
+       <width>173</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_5">
+      <item>
+       <widget class="QLabel" name="label_41">
+        <property name="text">
+         <string>左侧床层前端温度</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QDoubleSpinBox" name="doubleSpinBox_5">
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="maximum">
+         <double>2000.000000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>50.000000000000000</double>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="">
+     <property name="geometry">
+      <rect>
+       <x>281</x>
+       <y>237</y>
+       <width>173</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_6">
+      <item>
+       <widget class="QLabel" name="label_42">
+        <property name="text">
+         <string>右侧床层前端温度</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QDoubleSpinBox" name="doubleSpinBox_6">
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="maximum">
+         <double>2000.000000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>50.000000000000000</double>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="">
+     <property name="geometry">
+      <rect>
+       <x>281</x>
+       <y>277</y>
+       <width>173</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_7">
+      <item>
+       <widget class="QLabel" name="label_43">
+        <property name="text">
+         <string>左侧床层后端温度</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QDoubleSpinBox" name="doubleSpinBox_7">
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="maximum">
+         <double>2000.000000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>50.000000000000000</double>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="">
+     <property name="geometry">
+      <rect>
+       <x>281</x>
+       <y>316</y>
+       <width>173</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_8">
+      <item>
+       <widget class="QLabel" name="label_44">
+        <property name="text">
+         <string>右侧床层后端温度</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QDoubleSpinBox" name="doubleSpinBox_8">
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="maximum">
+         <double>2000.000000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>50.000000000000000</double>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1920</width>
+     <width>1280</width>
      <height>19</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menufile">
+    <property name="title">
+     <string>文件(F)</string>
+    </property>
+    <addaction name="separator"/>
+    <addaction name="actionNew_file"/>
+    <addaction name="actionSave_data_file"/>
+   </widget>
+   <widget class="QMenu" name="menuedit">
+    <property name="title">
+     <string>编辑(F)</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menu_V">
+    <property name="title">
+     <string>视图(V)</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menu_T">
+    <property name="title">
+     <string>工具(T)</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menu_H">
+    <property name="title">
+     <string>帮助(H)</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menu_A">
+    <property name="title">
+     <string>分析(A)</string>
+    </property>
+   </widget>
+   <addaction name="menufile"/>
+   <addaction name="menuedit"/>
+   <addaction name="menu_V"/>
+   <addaction name="menu_T"/>
+   <addaction name="menu_A"/>
+   <addaction name="menu_H"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <property name="toolButtonStyle">
+    <enum>Qt::ToolButtonTextUnderIcon</enum>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="action"/>
+   <addaction name="action_2"/>
+   <addaction name="action_3"/>
+   <addaction name="action_4"/>
+   <addaction name="action_5"/>
+  </widget>
+  <action name="actionNew_file">
+   <property name="text">
+    <string>New file</string>
+   </property>
+  </action>
+  <action name="actionSave_data_file">
+   <property name="text">
+    <string>Save data file</string>
+   </property>
+  </action>
+  <action name="action">
+   <property name="icon">
+    <iconset>
+     <normaloff>resources/images/stove_icon2.svg</normaloff>resources/images/stove_icon2.svg</iconset>
+   </property>
+   <property name="text">
+    <string>导航状态初始化</string>
+   </property>
+   <property name="toolTip">
+    <string>导航状态初始化</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
+   </property>
+  </action>
+  <action name="action_2">
+   <property name="icon">
+    <iconset>
+     <normaloff>resources/images/stove_icon3.svg</normaloff>resources/images/stove_icon3.svg</iconset>
+   </property>
+   <property name="text">
+    <string>燃料类型选项</string>
+   </property>
+   <property name="toolTip">
+    <string>燃料类型选项</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
+   </property>
+  </action>
+  <action name="action_3">
+   <property name="icon">
+    <iconset>
+     <normaloff>resources/images/stove_icon4.svg</normaloff>resources/images/stove_icon4.svg</iconset>
+   </property>
+   <property name="text">
+    <string>导航目标设定</string>
+   </property>
+   <property name="toolTip">
+    <string>导航目标设定</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
+   </property>
+  </action>
+  <action name="action_4">
+   <property name="icon">
+    <iconset>
+     <normaloff>resources/images/stove_icon5.svg</normaloff>resources/images/stove_icon5.svg</iconset>
+   </property>
+   <property name="text">
+    <string>历史数据分析</string>
+   </property>
+   <property name="toolTip">
+    <string>历史数据分析</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
+   </property>
+  </action>
+  <action name="action_5">
+   <property name="icon">
+    <iconset>
+     <normaloff>resources/images/stove_icon6.svg</normaloff>resources/images/stove_icon6.svg</iconset>
+   </property>
+   <property name="text">
+    <string>运行</string>
+   </property>
+   <property name="toolTip">
+    <string>运行</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

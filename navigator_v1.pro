@@ -1,8 +1,9 @@
-QT       += core gui
+
+QT  += core gui widgets quick quickwidgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-CONFIG += c++17
+CONFIG += c++14
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -33,3 +34,6 @@ RESOURCES += \
     image.qrc
 
 RC_ICONS = avvbu-fiqxm-001.ico
+
+DISTFILES += \
+    resources/images/stove_icon6.svg

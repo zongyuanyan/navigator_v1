@@ -2,5 +2,26 @@
     <qresource prefix="/">
         <file>resources/images/stove_icon1.png</file>
         <file>resources/images/avvbu-fiqxm-001.ico</file>
+        <file>resources/images/stove_icon2.svg</file>
+        <file>resources/images/stove_icon3.svg</file>
+        <file>resources/images/stove_icon4.svg</file>
+        <file>resources/images/stove_icon5.svg</file>
+        <file>resources/images/ads_tile_blue.svg</file>
+        <file>resources/images/ads_tile_blue_light.svg</file>
+        <file>resources/images/ads_tile_green.svg</file>
+        <file>resources/images/ads_tile_orange.svg</file>
+        <file>resources/images/ads_logo.svg</file>
+        <file>resources/images/photo.svg</file>
+        <file>resources/images/H_H_H_L.png</file>
+        <file>resources/images/H_H_H_H.png</file>
+        <file>resources/images/H_L_H_L.png</file>
+        <file>resources/images/L_H_H_H.png</file>
+        <file>resources/images/L_H_H_L.png</file>
+        <file>resources/images/L_H_L_H.png</file>
+        <file>resources/images/L_L_H_H.png</file>
+        <file>resources/images/L_L_H_L.png</file>
+        <file>resources/images/L_L_L_H.png</file>
+        <file>resources/images/L_L_L_L.png</file>
+        <file>resources/images/stove_icon6.svg</file>
     </qresource>
 </RCC>
