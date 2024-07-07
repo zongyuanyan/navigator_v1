@@ -1,5 +1,5 @@
 
-QT  += core gui widgets quick quickwidgets
+QT  += core gui widgets quick quickwidgets charts
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
