@@ -2,6 +2,9 @@
 #define STOVE_NAVIGATOR_H
 
 #include <QMainWindow>
+#include <QtCharts>
+
+QT_CHARTS_USE_NAMESPACE
 
 QT_BEGIN_NAMESPACE
 namespace Ui {

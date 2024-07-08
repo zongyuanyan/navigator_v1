@@ -30,12 +30,12 @@ const double default_RATIO_SA_STEP = 0.05;
 
 const double Real_Oxy_Out = 0.055;
 
-const double openings_1[3] = {0.20, 0.55, 0.65};
-const double openings_2[3] = {0.50, 0.50, 0.50};
-const double openings_3[4] = {0.15, 0.45, 0.65, 0.75};
-const double openings_4[4] = {0.15, 0.45, 0.65, 0.75};
-const double openings_5[5] = {0.10, 0.40, 0.40, 0.50, 0.55};
-const double openings_6[5] = {0.50, 0.50, 0.50, 0.50, 0.50};
+double openings_1[3] = {0.20, 0.55, 0.65};
+double openings_2[3] = {0.50, 0.50, 0.50};
+double openings_3[4] = {0.15, 0.45, 0.65, 0.75};
+double openings_4[4] = {0.15, 0.45, 0.65, 0.75};
+double openings_5[5] = {0.10, 0.40, 0.40, 0.50, 0.55};
+double openings_6[5] = {0.50, 0.50, 0.50, 0.50, 0.50};
 
 double ini_ratios_1[3] = {0.65, 0.65, 0.65};
 double ini_ratios_2[4] = {0.65, 0.65, 0.65, 0.65};
@@ -53,8 +53,8 @@ const double ini_PUSH_VALUEs_1[3] = {1.50*AVE_PUSH, AVE_PUSH, 0.50*AVE_PUSH};
 const double ini_PUSH_VALUEs_2[4] = {1.50*AVE_PUSH, 1.25*AVE_PUSH, 0.75*AVE_PUSH, 0.50*AVE_PUSH};
 const double ini_PUSH_VALUEs_3[5] = {1.50*AVE_PUSH, 1.25*AVE_PUSH, AVE_PUSH, 1.25*AVE_PUSH, 1.50*AVE_PUSH};
 
-const double ini_PAUSE_VALUEs_1[3] = {0.75*AVE_PAUSE, AVE_PAUSE, 1.25*AVE_PAUSE};
-const double ini_PAUSE_VALUEs_2[4] = {0.75*AVE_PAUSE, 0.85*AVE_PAUSE, 1.25*AVE_PAUSE, 1.50*AVE_PAUSE};
-const double ini_PAUSE_VALUEs_3[5] = {0.75*AVE_PAUSE, 0.85*AVE_PAUSE, AVE_PAUSE, 1.25*AVE_PAUSE, 1.50*AVE_PAUSE};
+double ini_PAUSE_VALUEs_1[3] = {0.75*AVE_PAUSE, AVE_PAUSE, 1.25*AVE_PAUSE};
+double ini_PAUSE_VALUEs_2[4] = {0.75*AVE_PAUSE, 0.85*AVE_PAUSE, 1.25*AVE_PAUSE, 1.50*AVE_PAUSE};
+double ini_PAUSE_VALUEs_3[5] = {0.75*AVE_PAUSE, 0.85*AVE_PAUSE, AVE_PAUSE, 1.25*AVE_PAUSE, 1.50*AVE_PAUSE};
 
 #endif // PARAMS_H
