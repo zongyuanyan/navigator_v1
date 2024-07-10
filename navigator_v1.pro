@@ -38,3 +38,15 @@ RC_ICONS = avvbu-fiqxm-001.ico
 
 DISTFILES += \
     resources/images/stove_icon6.svg
+
+unix|win32: {
+    CONFIG(release, debug|release): {
+        LIBS += -L$$PWD/libs/ -lyaml
+    }
+    CONFIG(debug, debug|release): {
+        LIBS += -L$$PWD/libs/ -lyaml
+    }
+    INCLUDEPATH += $$PWD/src/yaml/include
+    DEPENDPATH += $$PWD/src/yaml/include
+}
+

@@ -1,0 +1,28 @@
+NUM_GATE : 0
+NUM_GATE_VEL : 0
+AVE_PUSH : 0
+AVE_PAUSE : 0
+
+Total_Capacity : 0
+Target_Capacity : 0
+
+Target_T_Bed_Mean : 0
+Target_T_Fur_MID : 0
+Target_T_Fur_TOP : 0
+Target_Oxy_Out : 0
+Total_PA : 0
+PA_MIN : 0
+Delta_PA_default : 0
+Total_SA : 0
+SA_MIN : 0
+Delta_SA_default : 0
+
+FUEL_IN_MODE : 0
+Delta_FU_PUSH_default : 0
+FU_PAUSE_default : 0
+
+default_RATIO_SA_Front : 0
+default_RATIO_SA_Rear : 0
+default_RATIO_SA_STEP : 0
+
+Real_Oxy_Out : 0

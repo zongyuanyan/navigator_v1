@@ -28,6 +28,7 @@ private:
 private slots:
     void ui_slot_switch_image();
     void ui_slot_initial_params();
+    void ui_slot_add_config_file();
 
 };
 #endif // STOVE_NAVIGATOR_H

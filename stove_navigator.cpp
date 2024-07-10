@@ -36,6 +36,10 @@
 #include <QQuickWidget>
 #include <QImage>
 
+#include "yaml-cpp/parser.h"
+#include "yaml-cpp/eventhandler.h"
+#include "yaml-cpp/yaml.h"
+
 /**
  * Helper function to create an SVG icon
  */
@@ -259,6 +263,12 @@ struct MainWindowPrivate
      */
 
     void init_conig_params();
+
+    /**
+     * show default_config params
+     */
+
+    void show_default_config_params();
 };
 
 //============================================================================
@@ -277,6 +287,9 @@ void MainWindowPrivate::createActions()
 
     a = ui.action;
     _this->connect(a, &QAction::triggered, _this, &Stove_Navigator::ui_slot_initial_params);
+
+    a = ui.action_3;
+    _this->connect(a, &QAction::triggered, _this, &Stove_Navigator::ui_slot_add_config_file);
 }
 
 //============================================================================
@@ -1424,7 +1437,7 @@ void MainWindowPrivate::run_stove_calc()
 {
     QString label_display = nullptr;
     QString str = nullptr;
-    char * temp_str = new char[MAX_STR_LEN];
+    char temp_str[MAX_STR_LEN];
     qDebug() << "\n#----------------------------当前阶段，面板运行数值如下:-------------------------#";
     qDebug("实际负荷: %f t/h \t 一次风机实际频率: %f kHz \t 二次风机实际频率: %f kHz", real_capacity, real_pa, real_sa);
     qDebug("各炉排控速段的推料电机运行频率: 第一段: %f\t, 第二段： %f\t, 第三段： %f\t, 第四段： %f\t\n", real_push_vals[0], real_push_vals[1], \
@@ -1643,6 +1656,80 @@ void::MainWindowPrivate::init_conig_params()
     ui.doubleSpinBox_34->setValue(0);
     ui.doubleSpinBox_35->setValue(0);
 }
+
+void::MainWindowPrivate::show_default_config_params()
+{
+    QString str_display;
+    char temp_str[50];
+
+    std::sprintf(temp_str, "AVE_PUSH: %.2f\t", AVE_PUSH);
+    str_display += temp_str;
+
+    std::sprintf(temp_str, "AVE_PAUSE: %.2f\n", AVE_PAUSE);
+    str_display += temp_str;
+
+    std::sprintf(temp_str, "Total_Capacity: %.2f\t", Total_Capacity);
+    str_display += temp_str;
+
+    std::sprintf(temp_str, "Target_Capacity: %.2f\n", Target_Capacity);
+    str_display += temp_str;
+
+    std::sprintf(temp_str, "Target_T_Bed_Mean: %.2f\t", Target_T_Bed_Mean);
+    str_display += temp_str;
+
+    std::sprintf(temp_str, "Target_T_Fur_MID: %.2f\n", Target_T_Fur_MID);
+    str_display += temp_str;
+
+    std::sprintf(temp_str, "Target_T_Fur_TOP: %.2f\t", Target_T_Fur_TOP);
+    str_display += temp_str;
+
+    std::sprintf(temp_str, "Target_Oxy_Out: %.2f\n", Target_Oxy_Out);
+    str_display += temp_str;
+
+    std::sprintf(temp_str, "Total_PA: %.2f\t", Total_PA);
+    str_display += temp_str;
+
+    std::sprintf(temp_str, "PA_MIN: %.2f\n", PA_MIN);
+    str_display += temp_str;
+
+    std::sprintf(temp_str, "Delta_PA_default: %.2f\t", Delta_PA_default);
+    str_display += temp_str;
+
+    std::sprintf(temp_str, "Total_SA: %.2f\n", Total_SA);
+    str_display += temp_str;
+
+    std::sprintf(temp_str, "SA_MIN: %.2f\t", SA_MIN);
+    str_display += temp_str;
+
+    std::sprintf(temp_str, "Delta_SA_default: %.2f\n", Delta_SA_default);
+    str_display += temp_str;
+
+    std::sprintf(temp_str, "FUEL_IN_MODE: %.2f\t", FUEL_IN_MODE);
+    str_display += temp_str;
+
+    std::sprintf(temp_str, "Delta_FU_PUSH_default: %.2f\n", Delta_FU_PUSH_default);
+    str_display += temp_str;
+
+    std::sprintf(temp_str, "FU_PAUSE_default: %.2f\t", FU_PAUSE_default);
+    str_display += temp_str;
+
+    std::sprintf(temp_str, "default_RATIO_SA_Front: %.2f\n", default_RATIO_SA_Front);
+    str_display += temp_str;
+
+    std::sprintf(temp_str, "default_RATIO_SA_Rear: %.2f\t", default_RATIO_SA_Rear);
+    str_display += temp_str;
+
+    std::sprintf(temp_str, "default_RATIO_SA_STEP: %.2f\n", default_RATIO_SA_STEP);
+    str_display += temp_str;
+
+    std::sprintf(temp_str, "Real_Oxy_Out: %.3f\t", Real_Oxy_Out);
+    str_display += temp_str;
+
+    ui.label_7->setText(str_display);
+    ui.label_7->setStyleSheet("font-family: Microsoft YaHei UI; font-size: 9 pt; word-wrap: break-word");
+    ui.label_7->setWordWrap(true);
+}
+
 Stove_Navigator::Stove_Navigator(QWidget *parent)
     : QMainWindow(parent)
     , d(new MainWindowPrivate(this))
@@ -1771,4 +1858,41 @@ void Stove_Navigator::ui_slot_initial_params()
     d->plot_pusher_motor_inter_bar_chart();
     d->plot_sa_ratio_front_bar_chart();
     d->plot_sa_ratio_rear_bar_chart();
+}
+
+void Stove_Navigator::ui_slot_add_config_file()
+{
+    QString fileName = QFileDialog::getOpenFileName(this, "选择文件");
+
+    /* read config yaml */
+    YAML::Node config = YAML::LoadFile(fileName.toStdString());
+
+    AVE_PUSH = std::stod(config["AVE_PUSH"].as<std::string>());
+
+    AVE_PAUSE = std::stod(config["AVE_PAUSE"].as<std::string>());
+    Total_Capacity = std::stod(config["Total_Capacity"].as<std::string>());
+    Target_Capacity = std::stod(config["Target_Capacity"].as<std::string>());
+    Target_T_Bed_Mean = std::stod(config["Target_T_Bed_Mean"].as<std::string>());
+    Target_T_Fur_MID = std::stod(config["Target_T_Fur_MID"].as<std::string>());
+
+    Target_T_Fur_TOP = std::stod(config["Target_T_Fur_TOP"].as<std::string>());
+    Target_Oxy_Out = std::stod(config["Target_Oxy_Out"].as<std::string>());
+
+    Total_PA = std::stod(config["Total_PA"].as<std::string>());
+    PA_MIN = std::stod(config["PA_MIN"].as<std::string>());
+    Delta_PA_default = std::stod(config["Delta_PA_default"].as<std::string>());
+    Total_SA = std::stod(config["Total_SA"].as<std::string>());
+
+    SA_MIN = std::stod(config["SA_MIN"].as<std::string>());
+    Delta_SA_default = std::stod(config["Delta_SA_default"].as<std::string>());
+    FUEL_IN_MODE = std::stod(config["FUEL_IN_MODE"].as<std::string>());
+    Delta_FU_PUSH_default = std::stod(config["Delta_FU_PUSH_default"].as<std::string>());
+    FU_PAUSE_default = std::stod(config["FU_PAUSE_default"].as<std::string>());
+    default_RATIO_SA_Front = std::stod(config["default_RATIO_SA_Front"].as<std::string>());
+
+    default_RATIO_SA_Rear = std::stod(config["default_RATIO_SA_Rear"].as<std::string>());
+    default_RATIO_SA_STEP = std::stod(config["default_RATIO_SA_STEP"].as<std::string>());
+    Real_Oxy_Out = std::stod(config["Real_Oxy_Out"].as<std::string>());
+
+    d->show_default_config_params();
 }

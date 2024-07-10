@@ -1,0 +1,28 @@
+NUM_GATE : 4
+NUM_GATE_VEL : 4
+AVE_PUSH : 15.0
+AVE_PAUSE : 20.0
+
+Total_Capacity : 15
+Target_Capacity : 15
+
+Target_T_Bed_Mean : 700
+Target_T_Fur_MID : 1000
+Target_T_Fur_TOP : 900
+Target_Oxy_Out : 0.030
+Total_PA : 25.0
+PA_MIN : 10.0
+Delta_PA_default : 0.50
+Total_SA : 25.0
+SA_MIN : 5.0
+Delta_SA_default : 0.50
+
+FUEL_IN_MODE : 1
+Delta_FU_PUSH_default : 0.50
+FU_PAUSE_default : 30.0
+
+default_RATIO_SA_Front : 0.75
+default_RATIO_SA_Rear : 0.75
+default_RATIO_SA_STEP : 0.05
+
+Real_Oxy_Out : 0.055

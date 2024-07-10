@@ -3,8 +3,8 @@
 
 #define NUM_GATE        4
 #define NUM_GATE_VEL    4
-#define AVE_PUSH        15.0
-#define AVE_PAUSE       20.0
+double AVE_PUSH   =      15.0;
+double AVE_PAUSE  =      20.0;
 
 double Total_Capacity = 15;
 double Target_Capacity = 15;
