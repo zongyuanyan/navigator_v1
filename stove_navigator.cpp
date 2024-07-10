@@ -60,17 +60,17 @@ struct MainWindowPrivate
     MainWindowPrivate(Stove_Navigator* _public) : _this(_public) {}
 
     /* temp label value */
-    double t_bed_left_1;
-    double t_bed_right_1;
-    double t_bed_left_2;
-    double t_bed_right_2;
-    double t_fur_left_mid;
-    double t_fur_right_mid;
-    double t_fur_left_top;
-    double t_fur_right_top;
+    double t_bed_left_1 = 0;
+    double t_bed_right_1 = 0;
+    double t_bed_left_2 = 0;
+    double t_bed_right_2 = 0;
+    double t_fur_left_mid = 0;
+    double t_fur_right_mid = 0;
+    double t_fur_left_top = 0;
+    double t_fur_right_top = 0;
 
     /* image name will switch */
-    QString filename;
+    QString filename = nullptr;
 
     /* control which module open */
     bool RUN_Module1 = true;
@@ -81,42 +81,42 @@ struct MainWindowPrivate
     bool RUN_Module6 = true;
 
     /* config params */
-    double real_capacity;
-    double real_pa;
-    double real_sa;
-    double real_openings[4];
-    double real_push_vals[4];
-    double real_pause_vals[4];
-    double real_ratio_sa_front;
-    double real_ratio_sa_rear;
+    double real_capacity = 0;
+    double real_pa = 0;
+    double real_sa = 0;
+    double real_openings[4] = {0};
+    double real_push_vals[4] = {0};
+    double real_pause_vals[4] = {0};
+    double real_ratio_sa_front = 0;
+    double real_ratio_sa_rear = 0;
 
     /* Fuel adjustment parameters */
-    double Delta_FU_PUSH;
-    double Delta_FU_PAUSE;
+    double Delta_FU_PUSH = 0;
+    double Delta_FU_PAUSE = 0;
 
     /* PA adjustment parameters */
-    double DELTA_PA;
-    double NEXT_PA;
+    double DELTA_PA = 0;
+    double NEXT_PA = 0;
 
     /* SA adjustment parameters */
-    double DELTA_SA;
-    double NEXT_SA;
+    double DELTA_SA = 0;
+    double NEXT_SA = 0;
 
     /* OPENINGs adjustment parameters */
-    double adjust_vals[NUM_GATE];
-    double NEXT_values[NUM_GATE];
+    double adjust_vals[NUM_GATE] = {0};
+    double NEXT_values[NUM_GATE] = {0};
 
     /* Delta_PUSH_VALUEs Delta_PAUSE_VALUEsadjustment parameters */
-    double adj_PUSH_VALUEs[NUM_GATE_VEL];
-    double NEXT_PUSH_values[NUM_GATE_VEL];
-    double adj_PAUSE_VALUEs[NUM_GATE_VEL];
-    double NEXT_PAUSE_values[NUM_GATE_VEL];
+    double adj_PUSH_VALUEs[NUM_GATE_VEL] = {0};
+    double NEXT_PUSH_values[NUM_GATE_VEL]= {0};
+    double adj_PAUSE_VALUEs[NUM_GATE_VEL] = {0};
+    double NEXT_PAUSE_values[NUM_GATE_VEL] = {0};
 
     /* */
-    double DELTA_SA_RATIO_FRONT;
-    double NEXT_SA_RATIO_FRONT;
-    double DELTA_SA_RATIO_REAR;
-    double NEXT_SA_RATIO_REAR;
+    double DELTA_SA_RATIO_FRONT = 0;
+    double NEXT_SA_RATIO_FRONT = 0;
+    double DELTA_SA_RATIO_REAR = 0;
+    double NEXT_SA_RATIO_REAR = 0;
 
     /* add qcharts */
 
@@ -253,6 +253,12 @@ struct MainWindowPrivate
 
     void plot_sa_ratio_rear_bar_chart();
 
+
+    /**
+     * Init config params
+     */
+
+    void init_conig_params();
 };
 
 //============================================================================
@@ -270,7 +276,7 @@ void MainWindowPrivate::createActions()
     _this->connect(a, &QAction::triggered, _this, &Stove_Navigator::ui_slot_switch_image);
 
     a = ui.action;
-    _this->connect(a, &QAction::triggered, _this, &Stove_Navigator::ui_slot_switch_image);
+    _this->connect(a, &QAction::triggered, _this, &Stove_Navigator::ui_slot_initial_params);
 }
 
 //============================================================================
@@ -549,17 +555,20 @@ void MainWindowPrivate::calc_adjust_input_fuel()
     double k_capacity;
     double k_t_bed[2];
     double k_o2[2];
-    double Delta_FU_PUSH;
 
 
     k_capacity = calc_fuel_input_k_capacity_values();
     calc_fuel_input_k_tbed_values(k_t_bed);
     calc_fuel_input_k_to2_values(k_o2);
 
+    qDebug("k_capacity: %f\n", k_capacity);
+    qDebug("k_t_bed[0]: %f, k_t_bed[1]: %f\n", k_t_bed[0], k_t_bed[1]);
+    qDebug("k_o2[0]: %f, k_o2[1]: %f\n", k_o2[0], k_o2[1]);
     Delta_FU_PUSH = Delta_FU_PUSH_default * k_capacity * k_t_bed[0] * k_o2[0];
     Delta_FU_PAUSE = FU_PAUSE_default * k_t_bed[1] * k_o2[1];
 
     Delta_FU_PUSH = qRound(Delta_FU_PUSH * 1e4) / 1e4f;
+     qDebug("Delta_FU_PUSH: %f\n", Delta_FU_PUSH);
     Delta_FU_PAUSE = qRound(Delta_FU_PAUSE * 1e4) / 1e4f;
 }
 
@@ -914,7 +923,7 @@ void MainWindowPrivate::plot_prim_fan_bar_chart()
 
     series->append(set0);
     series->append(set1);
-    series->setBarWidth(0.8);
+    series->setBarWidth(1);
 
     QChart *chart = new QChart(); // 实例化QChart
     chart->addSeries(series);
@@ -928,12 +937,24 @@ void MainWindowPrivate::plot_prim_fan_bar_chart()
     qDebug("x: %d, y:%d, w: %d, h: %d\n",x, y, w , h);
 
     QBarCategoryAxis *axis = new QBarCategoryAxis();
+
+    // 创建X轴底部提示
+    QStringList categories;
+    categories << "1";
+
+    axis->append(categories);
+    chart->createDefaultAxes();
+
+    QFont font;
+    font.setPixelSize(12);
+    axis->setLabelsFont(font);
+
     chart->createDefaultAxes();
     chart->setAxisX(axis, series);
-    chart->removeAxis(axis);
+    // chart->removeAxis(axis);
 
     QValueAxis *yAxis = new QValueAxis();
-    yAxis->setRange(0, 30);
+    yAxis->setRange(0, 40);
     chart->setAxisY(yAxis);
     series->attachAxis(yAxis);
     chart->removeAxis(yAxis);
@@ -945,16 +966,18 @@ void MainWindowPrivate::plot_prim_fan_bar_chart()
     set0->setLabelColor(Qt::black);
     set1->setLabelColor(Qt::black);
     QFont font1;
-    font1.setPixelSize(9);
+    font1.setPixelSize(12);
     set0->setLabelFont(font1);
     set1->setLabelFont(font1);
+
+    // 设置图例字体大小
+    QFont legendFont = chart->legend()->font();
+    legendFont.setPointSize(8); // 设置字体大小为8点
+    chart->legend()->setFont(legendFont);
 
     chart->legend()->detachFromChart();
     chart->legend()->setVisible(true);
     chart->legend()->setGeometry(QRectF(0,0, 100, 100));
-    // chart->legend()->setAlignment(Qt::AlignLeft);
-    // chart->legend()->update();
-    // chart->legend()->setPos(x, y - h / 8);
 
     // 将参数设置到画布
     ui.graphicsView->setChart(chart);
@@ -975,7 +998,7 @@ void MainWindowPrivate::plot_second_fan_bar_chart()
 
     series->append(set0);
     series->append(set1);
-    series->setBarWidth(0.8);
+    series->setBarWidth(1);
 
     QChart *chart = new QChart(); // 实例化QChart
     chart->addSeries(series);
@@ -986,12 +1009,23 @@ void MainWindowPrivate::plot_second_fan_bar_chart()
 
     chart->createDefaultAxes();
 
+    // 创建X轴底部提示
+    QStringList categories;
+    categories << "1";
+
+    axis->append(categories);
+    chart->createDefaultAxes();
+
+    QFont font;
+    font.setPixelSize(12);
+    axis->setLabelsFont(font);
+
     chart->addAxis(axis, Qt::AlignBottom);
     chart->setAxisX(axis, series);
-    chart->removeAxis(axis);
+    // chart->removeAxis(axis);
 
     QValueAxis *yAxis = new QValueAxis();
-    yAxis->setRange(0, 30);
+    yAxis->setRange(0, 40);
     chart->setAxisY(yAxis);
     series->attachAxis(yAxis);
     chart->removeAxis(yAxis);
@@ -1009,16 +1043,18 @@ void MainWindowPrivate::plot_second_fan_bar_chart()
     set0->setLabelColor(Qt::black);
     set1->setLabelColor(Qt::black);
     QFont font1;
-    font1.setPixelSize(9);
+    font1.setPixelSize(12);
     set0->setLabelFont(font1);
     set1->setLabelFont(font1);
+
+    // 设置图例字体大小
+    QFont legendFont = chart->legend()->font();
+    legendFont.setPointSize(8); // 设置字体大小为8点
+    chart->legend()->setFont(legendFont);
 
     chart->legend()->detachFromChart();
     chart->legend()->setVisible(true);
     chart->legend()->setGeometry(QRectF(0, 0, 100, 100));
-    // chart->legend()->setAlignment(Qt::AlignLeft);
-    // chart->legend()->update();
-    // chart->legend()->setPos(x, y - h / 2);
 
     // 将参数设置到画布
     ui.graphicsView_2->setChart(chart);
@@ -1055,7 +1091,7 @@ void MainWindowPrivate::plot_push_motor_bar_chart()
     chart->createDefaultAxes();
 
     QFont font;
-    font.setPixelSize(9);
+    font.setPixelSize(10);
     axis->setLabelsFont(font);
 
     chart->addAxis(axis, Qt::AlignBottom);
@@ -1063,7 +1099,7 @@ void MainWindowPrivate::plot_push_motor_bar_chart()
     // chart->removeAxis(axis);
 
     QValueAxis *yAxis = new QValueAxis();
-    yAxis->setRange(0, 30);
+    yAxis->setRange(0, 40);
     chart->setAxisY(yAxis);
     series->attachAxis(yAxis);
     chart->removeAxis(yAxis);
@@ -1081,16 +1117,19 @@ void MainWindowPrivate::plot_push_motor_bar_chart()
     set0->setLabelColor(Qt::black);
     set1->setLabelColor(Qt::black);
     QFont font1;
-    font1.setPixelSize(8);
+    font1.setPixelSize(12);
     set0->setLabelFont(font1);
     set1->setLabelFont(font1);
+
+    // 设置图例字体大小
+    QFont legendFont = chart->legend()->font();
+    legendFont.setPointSize(8); // 设置字体大小为8点
+    chart->legend()->setFont(legendFont);
 
     chart->legend()->detachFromChart();
     chart->legend()->setVisible(true);
     chart->legend()->setGeometry(QRectF(0, 0, 100, 100));
-    // chart->legend()->setAlignment(Qt::AlignLeft);
-    // chart->legend()->update();
-    // chart->legend()->setPos(x, y - h / 2);
+
 
     // 将参数设置到画布
     ui.graphicsView_3->setChart(chart);
@@ -1127,7 +1166,7 @@ void MainWindowPrivate::plot_pusher_air_silo_bar_chart()
     chart->createDefaultAxes();
 
     QFont font;
-    font.setPixelSize(9);
+    font.setPixelSize(12);
     axis->setLabelsFont(font);
 
     chart->addAxis(axis, Qt::AlignBottom);
@@ -1135,7 +1174,7 @@ void MainWindowPrivate::plot_pusher_air_silo_bar_chart()
     // chart->removeAxis(axis);
 
     QValueAxis *yAxis = new QValueAxis();
-    yAxis->setRange(0, 1);
+    yAxis->setRange(0, 1.5);
     chart->setAxisY(yAxis);
     series->attachAxis(yAxis);
     chart->removeAxis(yAxis);
@@ -1153,16 +1192,18 @@ void MainWindowPrivate::plot_pusher_air_silo_bar_chart()
     set0->setLabelColor(Qt::black);
     set1->setLabelColor(Qt::black);
     QFont font1;
-    font1.setPixelSize(8);
+    font1.setPixelSize(12);
     set0->setLabelFont(font1);
     set1->setLabelFont(font1);
+
+    // 设置图例字体大小
+    QFont legendFont = chart->legend()->font();
+    legendFont.setPointSize(8); // 设置字体大小为8点
+    chart->legend()->setFont(legendFont);
 
     chart->legend()->detachFromChart();
     chart->legend()->setVisible(true);
     chart->legend()->setGeometry(QRectF(0, 0, 100, 100));
-    // chart->legend()->setAlignment(Qt::AlignLeft);
-    // chart->legend()->update();
-    // chart->legend()->setPos(x, y - h / 2);
 
     // 将参数设置到画布
     ui.graphicsView_4->setChart(chart);
@@ -1199,7 +1240,7 @@ void MainWindowPrivate::plot_pusher_motor_inter_bar_chart()
     chart->createDefaultAxes();
 
     QFont font;
-    font.setPixelSize(9);
+    font.setPixelSize(12);
     axis->setLabelsFont(font);
 
     chart->addAxis(axis, Qt::AlignBottom);
@@ -1225,16 +1266,18 @@ void MainWindowPrivate::plot_pusher_motor_inter_bar_chart()
     set0->setLabelColor(Qt::black);
     set1->setLabelColor(Qt::black);
     QFont font1;
-    font1.setPixelSize(8);
+    font1.setPixelSize(12);
     set0->setLabelFont(font1);
     set1->setLabelFont(font1);
+
+    // 设置图例字体大小
+    QFont legendFont = chart->legend()->font();
+    legendFont.setPointSize(8); // 设置字体大小为8点
+    chart->legend()->setFont(legendFont);
 
     chart->legend()->detachFromChart();
     chart->legend()->setVisible(true);
     chart->legend()->setGeometry(QRectF(0, 0, 100, 100));
-    // chart->legend()->setAlignment(Qt::AlignLeft);
-    // chart->legend()->update();
-    // chart->legend()->setPos(x, y - h / 2);
 
     // 将参数设置到画布
     ui.graphicsView_5->setChart(chart);
@@ -1255,7 +1298,7 @@ void MainWindowPrivate::plot_sa_ratio_front_bar_chart()
 
     series->append(set0);
     series->append(set1);
-    series->setBarWidth(0.7);
+    series->setBarWidth(1);
 
     QChart *chart = new QChart(); // 实例化QChart
     chart->addSeries(series);
@@ -1268,10 +1311,10 @@ void MainWindowPrivate::plot_sa_ratio_front_bar_chart()
 
     chart->addAxis(axis, Qt::AlignBottom);
     chart->setAxisX(axis, series);
-    chart->removeAxis(axis);
+    // chart->removeAxis(axis);
 
     QValueAxis *yAxis = new QValueAxis();
-    yAxis->setRange(0, 1);
+    yAxis->setRange(0, 1.5);
     chart->setAxisY(yAxis);
     series->attachAxis(yAxis);
     chart->removeAxis(yAxis);
@@ -1283,27 +1326,24 @@ void MainWindowPrivate::plot_sa_ratio_front_bar_chart()
     qDebug("x: %d, y:%d, w: %d, h: %d\n",x, y, w , h);
 
     // 在每个柱形图上方显示数值
-    series->setLabelsPosition(QAbstractBarSeries::LabelsInsideBase);
+    series->setLabelsPosition(QAbstractBarSeries::LabelsOutsideEnd);
     series->setLabelsVisible(true);
 
     set0->setLabelColor(Qt::black);
     set1->setLabelColor(Qt::black);
     QFont font1;
-    font1.setPixelSize(9);
+    font1.setPixelSize(12);
     set0->setLabelFont(font1);
     set1->setLabelFont(font1);
 
     // 设置图例字体大小
     QFont legendFont = chart->legend()->font();
-    legendFont.setPointSize(6); // 设置字体大小为12点
+    legendFont.setPointSize(8); // 设置字体大小为8点
     chart->legend()->setFont(legendFont);
 
     chart->legend()->detachFromChart();
     chart->legend()->setVisible(true);
     chart->legend()->setGeometry(QRectF(0, 0, 100, 100));
-    // chart->legend()->setAlignment(Qt::AlignLeft);
-    // chart->legend()->update();
-    // chart->legend()->setPos(x, y - h / 2);
 
     // 将参数设置到画布
     ui.graphicsView_6->setChart(chart);
@@ -1324,7 +1364,7 @@ void MainWindowPrivate::plot_sa_ratio_rear_bar_chart()
 
     series->append(set0);
     series->append(set1);
-    series->setBarWidth(0.7);
+    series->setBarWidth(1);
 
     QChart *chart = new QChart(); // 实例化QChart
     chart->addSeries(series);
@@ -1337,10 +1377,10 @@ void MainWindowPrivate::plot_sa_ratio_rear_bar_chart()
 
     chart->addAxis(axis, Qt::AlignBottom);
     chart->setAxisX(axis, series);
-    chart->removeAxis(axis);
+    // chart->removeAxis(axis);
 
     QValueAxis *yAxis = new QValueAxis();
-    yAxis->setRange(0, 1);
+    yAxis->setRange(0, 1.5);
     chart->setAxisY(yAxis);
     series->attachAxis(yAxis);
     chart->removeAxis(yAxis);
@@ -1352,27 +1392,24 @@ void MainWindowPrivate::plot_sa_ratio_rear_bar_chart()
     qDebug("x: %d, y:%d, w: %d, h: %d\n",x, y, w , h);
 
     // 在每个柱形图上方显示数值
-    series->setLabelsPosition(QAbstractBarSeries::LabelsInsideBase);
+    series->setLabelsPosition(QAbstractBarSeries::LabelsOutsideEnd);
     series->setLabelsVisible(true);
 
     set0->setLabelColor(Qt::black);
     set1->setLabelColor(Qt::black);
     QFont font1;
-    font1.setPixelSize(9);
+    font1.setPixelSize(12);
     set0->setLabelFont(font1);
     set1->setLabelFont(font1);
 
     // 设置图例字体大小
     QFont legendFont = chart->legend()->font();
-    legendFont.setPointSize(6); // 设置字体大小为12点
+    legendFont.setPointSize(8); // 设置字体大小为8点
     chart->legend()->setFont(legendFont);
 
     chart->legend()->detachFromChart();
     chart->legend()->setVisible(true);
     chart->legend()->setGeometry(QRectF(0, 0, 100, 100));
-    // chart->legend()->setAlignment(Qt::AlignLeft);
-    // chart->legend()->update();
-    // chart->legend()->setPos(x, y - h / 2);
 
     // 将参数设置到画布
     ui.graphicsView_7->setChart(chart);
@@ -1382,8 +1419,12 @@ void MainWindowPrivate::plot_sa_ratio_rear_bar_chart()
 }
 
 
+#define MAX_STR_LEN         200
 void MainWindowPrivate::run_stove_calc()
 {
+    QString label_display = nullptr;
+    QString str = nullptr;
+    char * temp_str = new char[MAX_STR_LEN];
     qDebug() << "\n#----------------------------当前阶段，面板运行数值如下:-------------------------#";
     qDebug("实际负荷: %f t/h \t 一次风机实际频率: %f kHz \t 二次风机实际频率: %f kHz", real_capacity, real_pa, real_sa);
     qDebug("各炉排控速段的推料电机运行频率: 第一段: %f\t, 第二段： %f\t, 第三段： %f\t, 第四段： %f\t\n", real_push_vals[0], real_push_vals[1], \
@@ -1401,24 +1442,40 @@ void MainWindowPrivate::run_stove_calc()
         if (FUEL_IN_MODE == 1) {
             if (Delta_FU_PUSH > 0) {
                 qDebug("给料提示：当前推料电机频率应调大 %f khz！\n", abs(Delta_FU_PUSH));
+                std::sprintf(temp_str, "给料提示：当前推料电机频率应调大 %.2f khz！\n", abs(Delta_FU_PUSH));
+                QString str(temp_str);
+                label_display += str;
             } else if (Delta_FU_PUSH < 0) {
                 qDebug("给料提示：当前推料电机频率应调小 %f khz！\n", abs(Delta_FU_PUSH));
+                std::sprintf(temp_str, "给料提示：当前推料电机频率应调小 %.2fkhz！\n", abs(Delta_FU_PUSH));
+                QString str(temp_str);
+                label_display += str;
             } else {
                 qDebug("给料提示：当前推料电机频率暂勿需调整\n");
             }
         } else if (FUEL_IN_MODE == 2) {
             qDebug("给料提示：当前推料间歇时间应设置为 %f s！\n", Delta_FU_PAUSE);
+            std::sprintf(temp_str, "给料提示：当前推料间歇时间应设置为 %.2f s！\n", Delta_FU_PAUSE);
+            QString str(temp_str);
+            label_display += str;
         } else if (FUEL_IN_MODE == 3) {
             if (Delta_FU_PUSH > 0) {
                 qDebug("给料提示：当前推料电机频率应调大 %f khz！\n", abs(Delta_FU_PUSH));
+                std::sprintf(temp_str, "给料提示：当前推料电机频率应调大 %.2f khz！\n", abs(Delta_FU_PUSH));
+                QString str(temp_str);
+                label_display += str;
             } else if (Delta_FU_PUSH < 0) {
                 qDebug("给料提示：当前推料电机频率应调小 %f khz！\n", abs(Delta_FU_PUSH));
+                std::sprintf(temp_str, "给料提示：当前推料电机频率应调小 %.2f khz！\n", abs(Delta_FU_PUSH));
+                QString str(temp_str);
+                label_display += str;
             } else {
                 qDebug("给料提示：当前推料电机频率暂勿需调整\n");
             }
-        } else {
-            qDebug("进料速度控制模块尚未激活!\n");
         }
+    } else {
+        QString str("进料速度控制模块尚未激活!\n");
+        label_display += str;
     }
 
     if (RUN_Module2 == true) {
@@ -1426,8 +1483,14 @@ void MainWindowPrivate::run_stove_calc()
         if (real_pa > 1.05 * PA_MIN) {
             if (DELTA_PA > 0) {
                 qDebug("一次风调整提示：当前一次风电机频率应调大 %f khz，当前目标值为 %f khz！\n", abs(DELTA_PA), NEXT_PA);
+                std::sprintf(temp_str, "一次风调整提示：当前一次风电机频率应调大 %.2f khz，当前目标值为 %.2f khz！\n", abs(DELTA_PA), NEXT_PA);
+                QString str(temp_str);
+                label_display += str;
             } else if (DELTA_PA < 0) {
                 qDebug("一次风调整提示：当前一次风电机频率应调小 %f khz，当前目标值为 %f khz！\n", abs(DELTA_PA), NEXT_PA);
+                std::sprintf(temp_str, "一次风调整提示：当前一次风电机频率应调小 %.2f khz，当前目标值为 %.2f khz！\n", abs(DELTA_PA), NEXT_PA);
+                QString str(temp_str);
+                label_display += str;
             } else {
                 qDebug("当前一次风电机频率无需调整！\n");
             }
@@ -1436,6 +1499,8 @@ void MainWindowPrivate::run_stove_calc()
         }
     } else {
         qDebug("一次风量控制模块尚未激活!\n");
+        QString str("一次风量控制模块尚未激活!\n");
+        label_display += str;
     }
 
     if (RUN_Module3 == true) {
@@ -1443,8 +1508,14 @@ void MainWindowPrivate::run_stove_calc()
         if (real_sa > 1.05 * SA_MIN) {
             if (DELTA_SA > 0) {
                 qDebug("二次风调整提示：当前二次风电机频率应调大 %f khz，当前目标值为 %f khz！\n", abs(DELTA_SA), NEXT_SA);
+                std::sprintf(temp_str, "二次风调整提示：当前二次风电机频率应调大 %.2f khz，当前目标值为 %.2f khz！\n", abs(DELTA_SA), NEXT_SA);
+                QString str(temp_str);
+                label_display += str;
             } else if (DELTA_SA < 0) {
                 qDebug("二次风调整提示：当前二次风电机频率应调小 %f khz，当前目标值为 %f khz！\n", abs(DELTA_SA), NEXT_SA);
+                std::sprintf(temp_str, "二次风调整提示：当前二次风电机频率应调小 %.2f khz，当前目标值为 %.2f khz！\n", abs(DELTA_SA), NEXT_SA);
+                QString str(temp_str);
+                label_display += str;
             } else {
                     qDebug("当前二次风电机频率无需调整！\n");
             }
@@ -1453,51 +1524,125 @@ void MainWindowPrivate::run_stove_calc()
         }
     } else {
         qDebug("二次风量控制模块尚未激活!\n");
+        QString str("二次风量控制模块尚未激活!\n");
+        label_display += str;
     }
 
     if (RUN_Module4 == true) {
         calc_pa_dis_adjust_vals();
-        qDebug("各一次风仓建议开度：第一段: %f \t, 第二段: %f \t, 第三段: %f \t, 第四段: %f \t\n",\
+        qDebug("各一次风仓建议开度：\n第一段: %f, 第二段: %f, 第三段: %f, 第四段: %fn",\
                NEXT_values[0], NEXT_values[1], NEXT_values[2], NEXT_values[3]);
+        std::sprintf(temp_str, "各一次风仓建议开度:\n第一段: %.2f, 第二段: %.2f, 第三段: %.2f, 第四段: %.2f \n",\
+                     NEXT_values[0], NEXT_values[1], NEXT_values[2], NEXT_values[3]);
+        QString str(temp_str);
+        label_display += str;
     } else {
         qDebug("一次风门控制模块尚未激活!\n");
+        QString str("一次风门控制模块尚未激活!\n");
+        label_display += str;
     }
 
     if (RUN_Module5 == true) {
         calc_grate_vel_adjust_vals();
-        qDebug("当前，各炉排控速段推料电机频率目标值为:\n");
+        qDebug("当前，各炉排控速段推料电机频率目标值(khz)为:\n");
         qDebug("第一段: %f \t, 第二段: %f \t, 第三段: %f \t, 第四段: %f \t\n",\
                NEXT_PUSH_values[0], NEXT_PUSH_values[1], NEXT_PUSH_values[2], NEXT_PUSH_values[3]);
-        qDebug("当前，各炉排控速段推料电机运行间歇目标值为:\n");
-        qDebug("第一段: %f \t, 第二段: %f \t, 第三段: %f \t, 第四段: %f \t\n",\
+        qDebug("当前，各炉排控速段推料电机运行间歇目标值(s)为:\n");
+        qDebug("第一段: %.2f \t, 第二段: %.2f \t, 第三段: %.2f \t, 第四段: %.2f \n",\
                NEXT_PAUSE_values[0], NEXT_PAUSE_values[1], NEXT_PAUSE_values[2], NEXT_PAUSE_values[3]);
+        QString str("当前，各炉排控速段推料电机频率目标值(khz)为:\n");
+        label_display += str;
+        std::sprintf(temp_str, "第一段: %.2f, 第二段: %.2f, 第三段: %.2f, 第四段: %.2f \n",\
+                     NEXT_PUSH_values[0], NEXT_PUSH_values[1], NEXT_PUSH_values[2], NEXT_PUSH_values[3]);
+        QString str1(temp_str);
+        label_display += str1;
+        QString str2("当前，各炉排控速段推料电机运行间歇目标值(s)为:\n");
+        label_display += str2;
+        std::sprintf(temp_str, "第一段: %.2f, 第二段: %.2f, 第三段: %.2f, 第四段: %.2f \n",\
+                     NEXT_PAUSE_values[0], NEXT_PAUSE_values[1], NEXT_PAUSE_values[2], NEXT_PAUSE_values[3]);
+        QString str3(temp_str);
+        label_display += str3;
     } else {
         qDebug("炉排运动控制控制模块尚未激活!\n");
+        QString str("炉排运动控制控制模块尚未激活!\n");
+        label_display += str;
     }
 
     if (RUN_Module6 == true) {
         calc_adjust_sa_distribution_ratio();
         if (DELTA_SA_RATIO_FRONT > 0) {
             qDebug("当前，前墙二次风门开度应调大 %f khz，当前目标值为 %fkhz！\n", abs(DELTA_SA_RATIO_FRONT), abs(NEXT_SA_RATIO_FRONT));
+            std::sprintf(temp_str, "当前，前墙二次风门开度应调大 %.2f khz，当前目标值为 %.2f khz！\n", abs(DELTA_SA_RATIO_FRONT), abs(NEXT_SA_RATIO_FRONT));
+            QString str(temp_str);
+            label_display += str;
         } else if (DELTA_SA_RATIO_FRONT < 0) {
             qDebug("当前，前墙二次风门开度应调小 %f khz，当前目标值为 %fkhz！\n", abs(DELTA_SA_RATIO_FRONT), abs(NEXT_SA_RATIO_FRONT));
+            std::sprintf(temp_str, "当前，前墙二次风门开度应调小 %.2fkhz，当前目标值为 %.2f khz！\n", abs(DELTA_SA_RATIO_FRONT), abs(NEXT_SA_RATIO_FRONT));
+            QString str(temp_str);
+            label_display += str;
         } else {
             qDebug("当前前墙二次风门开度无需调整！\n");
         }
 
         if (DELTA_SA_RATIO_REAR > 0) {
             qDebug("当前，前墙二次风门开度应调大 %f khz，当前目标值为 %fkhz！\n", abs(DELTA_SA_RATIO_REAR), abs(NEXT_SA_RATIO_REAR));
+            std::sprintf(temp_str, "当前，前墙二次风门开度应调大 %.2f khz，当前目标值为 %.2f khz！\n", abs(DELTA_SA_RATIO_REAR), abs(NEXT_SA_RATIO_REAR));
+            QString str(temp_str);
+            label_display += str;
         } else if (DELTA_SA_RATIO_REAR < 0) {
             qDebug("当前，前墙二次风门开度应调小 %f khz，当前目标值为 %fkhz！\n", abs(DELTA_SA_RATIO_REAR), abs(NEXT_SA_RATIO_REAR));
+            std::sprintf(temp_str, "当前，前墙二次风门开度应调小 %.2f khz，当前目标值为 %.2f khz！\n", abs(DELTA_SA_RATIO_REAR), abs(NEXT_SA_RATIO_REAR));
+            QString str(temp_str);
+            label_display += str;
         } else {
             qDebug("当前后墙二次风门开度无需调整！\n");
         }
     } else {
         qDebug("二次风前后墙控制模块尚未激活!\n");
+        QString str("二次风前后墙控制模块尚未激活!\n");
+        label_display += str;
     }
 
+    ui.label_7->setText(label_display);
+    ui.label_7->setStyleSheet("font-family: Microsoft YaHei UI; font-size: 10pt; font-weight: bold; word-wrap: break-word");
+    ui.label_7->setWordWrap(true);
 }
 
+void::MainWindowPrivate::init_conig_params()
+{
+    ui.doubleSpinBox->setValue(0);
+    ui.doubleSpinBox_2->setValue(0);
+    ui.doubleSpinBox_3->setValue(0);
+    ui.doubleSpinBox_4->setValue(0);
+    ui.doubleSpinBox_5->setValue(0);
+    ui.doubleSpinBox_6->setValue(0);
+    ui.doubleSpinBox_7->setValue(0);
+    ui.doubleSpinBox_8->setValue(0);
+    ui.doubleSpinBox_9->setValue(0);
+    ui.doubleSpinBox_10->setValue(0);
+    ui.doubleSpinBox_11->setValue(0);
+    ui.doubleSpinBox_15->setValue(0);
+    ui.doubleSpinBox_16->setValue(0);
+    ui.doubleSpinBox_17->setValue(0);
+    ui.doubleSpinBox_18->setValue(0);
+    ui.doubleSpinBox_19->setValue(0);
+    ui.doubleSpinBox_20->setValue(0);
+    ui.doubleSpinBox_21->setValue(0);
+    ui.doubleSpinBox_22->setValue(0);
+    ui.doubleSpinBox_23->setValue(0);
+    ui.doubleSpinBox_24->setValue(0);
+    ui.doubleSpinBox_25->setValue(0);
+    ui.doubleSpinBox_26->setValue(0);
+    ui.doubleSpinBox_27->setValue(0);
+    ui.doubleSpinBox_28->setValue(0);
+    ui.doubleSpinBox_29->setValue(0);
+    ui.doubleSpinBox_30->setValue(0);
+    ui.doubleSpinBox_31->setValue(0);
+    ui.doubleSpinBox_32->setValue(0);
+    ui.doubleSpinBox_33->setValue(0);
+    ui.doubleSpinBox_34->setValue(0);
+    ui.doubleSpinBox_35->setValue(0);
+}
 Stove_Navigator::Stove_Navigator(QWidget *parent)
     : QMainWindow(parent)
     , d(new MainWindowPrivate(this))
@@ -1512,7 +1657,7 @@ Stove_Navigator::Stove_Navigator(QWidget *parent)
     d->set_temp();
 
     // Default window geometry - center on screen
-    resize(1280, 720);
+    resize(1600, 900);
 }
 
 Stove_Navigator::~Stove_Navigator()
@@ -1532,6 +1677,93 @@ void Stove_Navigator::ui_slot_switch_image()
     d->run_stove_calc();
 
     /* plot bar chart */
+    if (d->RUN_Module2)
+        d->plot_prim_fan_bar_chart();
+    if (d->RUN_Module3)
+        d->plot_second_fan_bar_chart();
+    if (d->RUN_Module4) {
+        d->plot_pusher_air_silo_bar_chart();
+    }
+    if (d->RUN_Module5) {
+        d->plot_push_motor_bar_chart();
+        d->plot_pusher_motor_inter_bar_chart();
+    }
+    if (d->RUN_Module6) {
+        d->plot_sa_ratio_front_bar_chart();
+        d->plot_sa_ratio_rear_bar_chart();
+    }
+}
+
+void Stove_Navigator::ui_slot_initial_params()
+{
+    qDebug() << "Stove_Navigator::init default params\n";
+    /* temp label value */
+    d->t_bed_left_1 = 0;
+    d->t_bed_right_1 = 0;
+    d->t_bed_left_2 = 0;
+    d->t_bed_right_2 = 0;
+    d->t_fur_left_mid = 0;
+    d->t_fur_right_mid = 0;
+    d->t_fur_left_top = 0;
+    d->t_fur_right_top = 0;
+    qDebug() << "#######################";
+    /* image name will switch */
+    d->filename = nullptr;
+    qDebug() << "#######################";
+    /* control which module open */
+    d->RUN_Module1 = false;
+    d->RUN_Module2 = false;
+    d->RUN_Module3 = false;
+    d->RUN_Module4 = false;
+    d->RUN_Module5 = false;
+    d->RUN_Module6 = false;
+
+    /* config params */
+    d->real_capacity = 0;
+    d->real_pa = 0;
+    d->real_sa = 0;
+    qDebug() << "#######################";
+    for (int i = 0; i < NUM_GATE; i++) {
+        /* OPENINGs adjustment parameters */
+        d->real_openings[i] = 0;
+        d->real_push_vals[i] = 0;
+        d->real_pause_vals[i] = 0;
+
+        d->adjust_vals[i] = 0;
+        d->NEXT_values[i] = 0;
+
+        /* Delta_PUSH_VALUEs Delta_PAUSE_VALUEsadjustment parameters */
+        d->adj_PUSH_VALUEs[i] = 0;
+        d->NEXT_PUSH_values[i]= 0;
+        d->adj_PAUSE_VALUEs[i] = 0;
+        d->NEXT_PAUSE_values[i] = 0;
+    }
+
+    d->real_ratio_sa_front = 0;
+    d->real_ratio_sa_rear = 0;
+
+    /* Fuel adjustment parameters */
+    d->Delta_FU_PUSH = 0;
+    d->Delta_FU_PAUSE = 0;
+
+    /* PA adjustment parameters */
+    d->DELTA_PA = 0;
+    d->NEXT_PA = 0;
+
+    /* SA adjustment parameters */
+    d->DELTA_SA = 0;
+    d->NEXT_SA = 0;
+
+    /* */
+    d->DELTA_SA_RATIO_FRONT = 0;
+    d->NEXT_SA_RATIO_FRONT = 0;
+    d->DELTA_SA_RATIO_REAR = 0;
+    d->NEXT_SA_RATIO_REAR = 0;
+
+    d->init_conig_params();
+    d->ui.label_7->setText(nullptr);
+
+    /* plot bar chart */
     d->plot_prim_fan_bar_chart();
     d->plot_second_fan_bar_chart();
     d->plot_pusher_air_silo_bar_chart();
@@ -1540,8 +1772,3 @@ void Stove_Navigator::ui_slot_switch_image()
     d->plot_sa_ratio_front_bar_chart();
     d->plot_sa_ratio_rear_bar_chart();
 }
-void Stove_Navigator::ui_slot_initial_params()
-{
-    qDebug() << "Stove_Navigator::init default params\n";
-}
-

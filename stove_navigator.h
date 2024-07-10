@@ -4,8 +4,6 @@
 #include <QMainWindow>
 #include <QtCharts>
 
-QT_CHARTS_USE_NAMESPACE
-
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class Stove_Navigator;
